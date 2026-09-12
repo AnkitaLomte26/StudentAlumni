@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="AlumniConnect brings students and alumni together around college, careers, and meaningful guidance." />
+  <title>Alumni dashboard | AlumniConnect</title>
+  <link rel="icon" href="data:," />
+  <link rel="stylesheet" href="css/style.css" />
+  <script src="js/config.js" defer></script><script src="js/api.js?v=6" defer></script>
+  <script src="js/ui.js" defer></script>
+  <script src="js/dashboard.js" defer></script>
+  <script src="js/professional-ui.js" defer></script>
+  <script src="js/professional-profile.js" defer></script>
+  <script src="js/alumni-dashboard.js" defer></script>
+</head>
+<body class="">
+<a class="skip-link" href="#main-content">Skip to main content</a>
+  <header class="site-header"><div class="container header-inner"><a class="brand" href="index.html"><span class="brand-mark"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m2 9 10-5 10 5-10 5L2 9Z"/><path d="M6 11v6c4 3 8 3 12 0v-6M22 9v7"/></svg></span>AlumniConnect</a>
+    <nav class="main-nav" aria-label="Main navigation">
+      <a href="index.html">Home</a>
+      <a href="#professional">Professional profile</a><a href="requests.html">Requests</a><a href="connections.html">Connections</a><a href="chat.html">Messages</a><a href="notifications.html">Notifications</a><button class="secondary" id="logout" type="button">Log out</button>
+    </nav></div></header><noscript><p>Please enable JavaScript to use account and profile features.</p></noscript>
+<div class="container dashboard-layout">
+<aside class="sidebar"><p class="eyebrow">Alumni workspace</p><nav aria-label="Dashboard navigation"><a href="alumni-dashboard.html" aria-current="page"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>Overview</a><a href="#edit-profile"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21v-2a8 8 0 0 1 16 0v2"/></svg>My profile</a><a href="#upcoming"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="8" r="3"/><path d="M3 21v-3a6 6 0 0 1 12 0v3M16 5a3 3 0 0 1 0 6M18 15a5 5 0 0 1 3 5"/></svg>Requests and connections</a></nav><p class="sidebar-note">Good connections start with a thoughtful profile. Make yours feel like you.</p></aside>
+<main id="main-content" tabindex="-1">
+<header class="welcome"><p class="eyebrow">Alumni dashboard</p><h1>Welcome<span id="welcome-name"></span>.</h1><p>Your experience can make a difference. Keep your profile up to date.</p></header>
+<div class="load-error"><p id="load-status" class="status" role="status" aria-live="polite" aria-atomic="true">Loading your profile…</p><button id="retry-load" class="secondary" type="button" hidden>Retry loading profile</button></div>
+<div class="dashboard-grid">
+<section class="card" aria-labelledby="summary-title"><h2 id="summary-title">Your profile at a glance</h2><p class="subtitle">Your saved information.</p>
+<div class="profile-top"><span class="avatar" id="avatar" aria-hidden="true">—</span><div><h3 class="profile-name" id="profile-name">Loading account…</h3><p id="user-info"></p></div></div>
+<div class="tag-row"><span class="badge">ALUMNI</span><span class="badge" id="account-status">Loading status…</span></div>
+<dl class="profile-details">
+<div><dt>Branch / department</dt><dd id="summary-branch">Loading…</dd></div>
+<div><dt>Graduation year</dt><dd id="summary-graduation_year">Loading…</dd></div>
+<div><dt>Alumni verification</dt><dd><span class="badge" id="verification_status">Loading…</span></dd><dd class="hint" id="verification-help"></dd></div><div><dt>Guidance availability</dt><dd id="guidance-status">Loading…</dd></div>
+<div class="bio-detail"><dt>About you</dt><dd id="summary-bio">Loading…</dd></div>
+</dl><div class="completion"><label for="profile-completion">Profile completion <span id="completion-count">—</span></label><progress id="profile-completion" max="3" value="0"></progress><p class="hint" id="completion-hint">Based on your saved background information.</p></div>
+</section>
+<section class="card" id="edit-profile" aria-labelledby="edit-title"><h2 id="edit-title">Make your profile yours</h2><p class="subtitle">Share your background and the experience you bring.</p>
+<form id="profile-form"><fieldset id="profile-fields" disabled><legend class="hint">All profile fields are optional.</legend>
+<div class="form-grid"><div class="field"><label for="branch">Branch / department</label>
+<input id="branch" name="branch" maxlength="120" placeholder="e.g. Computer Science" aria-describedby="branch-error" />
+<p class="field-error" id="branch-error"></p></div><div class="field"><label for="graduation_year">Graduation year</label>
+<input id="graduation_year" name="graduation_year" type="number" min="1950" max="2100" step="1" placeholder="e.g. 2027" aria-describedby="graduation_year-error" />
+<p class="field-error" id="graduation_year-error"></p></div></div><div class="field"><label for="bio">About you</label>
+<textarea id="bio" name="bio" rows="3" maxlength="2000" placeholder="Share your interests, experience, or career goals." aria-describedby="bio-hint bio-error"></textarea>
+<p class="hint" id="bio-hint">Up to 2,000 characters.</p><p class="field-error" id="bio-error"></p></div><div class="field"><label class="checkbox" for="accepting_guidance_requests"><input id="accepting_guidance_requests" name="accepting_guidance_requests" type="checkbox" aria-describedby="guidance-hint" /><span>Accepting guidance requests<span class="hint" id="guidance-hint">Allow students to send requests after your college identity is verified.</span></span></label></div>
+<div class="form-actions"><button type="submit">Save profile</button></div></fieldset><p id="status" class="status" role="status" aria-live="polite" aria-atomic="true"></p></form>
+</section>
+</div>
+<p id="professional-status" class="status" role="status" aria-live="polite" aria-atomic="true"></p><section id="professional" class="professional-section" data-role="ALUMNI" hidden aria-label="Professional profile">
+<div class="section-heading"><p class="eyebrow">Your professional story</p><h2>Experience worth sharing.</h2><p>Manage your work history and the topics you can help students explore. Employment details are self-reported.</p></div>
+<div class="professional-grid"><section class="card"><h2>Your skills</h2><div id="skills-list" class="tag-row"></div><form id="skills-form" class="inline-form"><div class="field"><label for="skills-input">Find a skill</label><input id="skills-input" placeholder="Type to search; choose a suggestion" /></div><button type="submit">Add skill</button></form><p id="skills-status" class="status" role="status" aria-live="polite" aria-atomic="true"></p><p class="hint">Missing an option? Ask your college administrator to add it.</p></section><section class="card"><h2>Guidance areas</h2><div id="areas-list" class="tag-row"></div><form id="areas-form" class="inline-form"><div class="field"><label for="areas-input">Find a guidance area</label><input id="areas-input" placeholder="Type to search; choose a suggestion" /></div><button type="submit">Add guidance area</button></form><p id="areas-status" class="status" role="status" aria-live="polite" aria-atomic="true"></p><p class="hint">Missing an option? Ask your college administrator to add it.</p></section></div>
+<section class="card"><h2>Work experience</h2><div id="work-list"></div>
+<form id="work-form"><h3 id="work-form-title">Add or edit a role</h3>
+<div class="form-grid"><div class="field"><label for="work-company">Company *</label><input id="work-company" required placeholder="Search companies" /></div><div class="field"><label for="work-role">Job title / role *</label><input id="work-role" required maxlength="120" placeholder="e.g. Software Engineer" /></div><div class="field"><label for="work-domain">Domain *</label><input id="work-domain" required maxlength="120" placeholder="e.g. Backend Engineering" /></div><div class="field"><label for="work-start_date">Start date *</label><input id="work-start_date" type="date" required min="1950-01-01" /></div><div class="field"><label for="work-end_date">End date</label><input id="work-end_date" type="date" min="1950-01-01" aria-describedby="end-date-hint" /></div></div>
+<p id="end-date-hint" class="hint">Leave the end date empty for current employment. Fields marked * are required.</p>
+<div class="form-actions"><button id="work-submit" type="submit">Add work experience</button><button id="work-cancel" type="button" class="secondary" hidden>Cancel edit</button></div><p id="work-status" class="status" role="status" aria-live="polite" aria-atomic="true"></p></form></section>
+<section class="card" id="college-verification"><div class="section-title-row"><h2>College identity verification</h2><span id="proof-badge" class="badge">Loading…</span></div>
+<p id="proof-info" class="muted"></p><p class="hint">Verification confirms college-alumni identity only, not employment. Only administrators can retrieve your proof. Files are deleted after a review decision.</p>
+<form id="proof-form"><div class="field"><label for="proof-file">College ID proof *</label><input id="proof-file" name="file" type="file" required accept="image/png,image/jpeg,application/pdf" aria-describedby="proof-hint" /><p id="proof-hint" class="hint">PNG, JPEG, or PDF. Maximum 5 MB. PDFs must be unencrypted and at most 20 pages.</p></div><div class="form-actions"><button type="submit" id="proof-submit">Submit college ID</button></div></form><p id="proof-status" class="status" role="status" aria-live="polite" aria-atomic="true"></p></section></section>
+<section class="upcoming" id="upcoming" aria-labelledby="upcoming-title"><div class="upcoming-heading"><h2 id="upcoming-title">More ways to connect</h2><span class="small muted">Manage your college connections</span></div><div class="upcoming-grid">
+<article class="card upcoming-card"><span class="icon-box"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 11a9 9 0 0 1-9 9H3l2-5a9 9 0 1 1 16-4Z"/><path d="M8 10h8M8 14h5"/></svg></span><h3>Guidance Requests</h3><p>See and respond to students looking for your perspective.</p><a class="button secondary" href="requests.html">View requests</a></article>
+<article class="card upcoming-card"><span class="icon-box"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="8" r="3"/><path d="M3 21v-3a6 6 0 0 1 12 0v3M16 5a3 3 0 0 1 0 6M18 15a5 5 0 0 1 3 5"/></svg></span><h3>Connections</h3><p>Keep in touch with the students you connect with.</p><a class="button secondary" href="connections.html">View connections</a></article>
+</div></section></main></div><footer class="site-footer"><div class="container footer-inner"><p>AlumniConnect <span aria-hidden="true">·</span> A shared campus. A stronger future.</p><div class="footer-links"><a href="index.html#about">About</a><a href="index.html#how-it-works">How it works</a></div></div></footer>
+</body>
+</html>

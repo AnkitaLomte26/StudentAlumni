@@ -1,0 +1,1 @@
+Alembic migration scripts live in versions/. Phase 1 has no application tables, so no revisions yet.

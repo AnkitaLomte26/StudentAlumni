@@ -1,0 +1,17 @@
+/.env export-ignore
+/.env.docker export-ignore
+/.private export-ignore
+/.private/** export-ignore
+/private_uploads export-ignore
+/private_uploads/** export-ignore
+/backend/.env export-ignore
+/backend/.private export-ignore
+/backend/.private/** export-ignore
+/backend/private_uploads export-ignore
+/backend/private_uploads/** export-ignore
+*.db export-ignore
+*.sqlite export-ignore
+*.sqlite3 export-ignore
+**/*.db export-ignore
+**/*.sqlite export-ignore
+**/*.sqlite3 export-ignore

@@ -1,0 +1,57 @@
+name: alumniconnect
+services:
+  postgres:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB:-alumni}
+      POSTGRES_USER: ${POSTGRES_USER:-alumni}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?Set POSTGRES_PASSWORD in .env.docker}
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U $$POSTGRES_USER -d $$POSTGRES_DB"]
+      interval: 5s
+      timeout: 3s
+      retries: 20
+    restart: unless-stopped
+
+  backend:
+    build: ./backend
+    environment:
+      DATABASE_URL: postgresql+psycopg2://${POSTGRES_USER:-alumni}:${POSTGRES_PASSWORD:?Set POSTGRES_PASSWORD}@postgres:5432/${POSTGRES_DB:-alumni}
+      SECRET_KEY: ${SECRET_KEY:?Set SECRET_KEY in .env.docker}
+      ENVIRONMENT: ${ENVIRONMENT:-development}
+      FRONTEND_ORIGIN: ${FRONTEND_ORIGIN:-http://localhost:8080}
+      ALLOWED_HOSTS: ${ALLOWED_HOSTS:-localhost,127.0.0.1,backend}
+      SESSION_HTTPS_ONLY: ${SESSION_HTTPS_ONLY:-false}
+      SESSION_SAME_SITE: ${SESSION_SAME_SITE:-lax}
+      SESSION_MAX_AGE: ${SESSION_MAX_AGE:-86400}
+      UPLOAD_DIRECTORY: /data/proofs
+      # Backend has no published port; only the trusted proxy reaches it.
+      FORWARDED_ALLOW_IPS: "*"
+    volumes:
+      - verification_proofs:/data/proofs
+    depends_on:
+      postgres:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8000/readiness', timeout=3)"]
+      interval: 10s
+      timeout: 5s
+      retries: 6
+      start_period: 10s
+    restart: unless-stopped
+
+  frontend:
+    build: ./frontend
+    ports:
+      - "127.0.0.1:${FRONTEND_PORT:-8080}:80"
+    depends_on:
+      backend:
+        condition: service_healthy
+    restart: unless-stopped
+
+volumes:
+  postgres_data:
+  verification_proofs:
+

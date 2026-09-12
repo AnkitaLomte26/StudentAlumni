@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="AlumniConnect brings students and alumni together around college, careers, and meaningful guidance." />
+  <title>Login | AlumniConnect</title>
+  <link rel="icon" href="data:," />
+  <link rel="stylesheet" href="css/style.css" />
+  <script src="js/config.js" defer></script><script src="js/api.js?v=6" defer></script>
+  <script src="js/ui.js" defer></script>
+  <script src="js/login.js" defer></script>
+</head>
+<body class="">
+<a class="skip-link" href="#main-content">Skip to main content</a>
+  <header class="site-header"><div class="container header-inner"><a class="brand" href="index.html"><span class="brand-mark"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m2 9 10-5 10 5-10 5L2 9Z"/><path d="M6 11v6c4 3 8 3 12 0v-6M22 9v7"/></svg></span>AlumniConnect</a>
+    <nav class="main-nav" aria-label="Main navigation">
+      <a href="index.html">Home</a>
+      <a href="index.html#how-it-works">How it works</a><a href="login.html" aria-current="page">Login</a><a class="button" href="register.html">Get started</a>
+    </nav></div></header><noscript><p>Please enable JavaScript to use account and profile features.</p></noscript>
+<main id="main-content" class="container auth-layout login-layout" tabindex="-1"><aside class="auth-aside"><p class="eyebrow">Your college. Your community.</p><h1>Your next chapter starts with a connection.</h1><p>A familiar community. A fresh perspective on your career. Welcome back to AlumniConnect.</p><ul class="aside-points">
+<li><span class="icon-box"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m2 9 10-5 10 5-10 5L2 9Z"/><path d="M6 11v6c4 3 8 3 12 0v-6M22 9v7"/></svg></span><div><strong>One college, shared possibilities</strong><p>A space for students and alumni to grow together.</p></div></li>
+<li><span class="icon-box"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21v-2a8 8 0 0 1 16 0v2"/></svg></span><div><strong>Start with your story</strong><p>Add your academic background and career interests.</p></div></li>
+<li><span class="icon-box"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="8" r="3"/><path d="M3 21v-3a6 6 0 0 1 12 0v3M16 5a3 3 0 0 1 0 6M18 15a5 5 0 0 1 3 5"/></svg></span><div><strong>Discover relevant experience</strong><p>Find verified college alumni, send a guidance request, and manage your connections.</p></div></li></ul></aside>
+<section class="card auth-card" aria-labelledby="login-title"><p class="eyebrow">Good to see you again</p><h2 id="login-title">Welcome back</h2><p class="subtitle">Log in to your student or alumni account.</p>
+<form id="login-form">
+<div class="field"><label for="email">Email <span class="required" aria-hidden="true">*</span></label>
+<input id="email" name="email" type="email" required autocomplete="username" placeholder="you@example.com" aria-describedby="email-error" />
+<p class="field-error" id="email-error"></p></div>
+<div class="field"><label for="password">Password <span class="required" aria-hidden="true">*</span></label>
+<div class="password-control">
+<input id="password" name="password" type="password" required autocomplete="current-password" placeholder="Enter your password" aria-describedby="password-error" />
+<button type="button" class="secondary password-toggle" data-password-toggle="password" aria-controls="password" aria-label="Show password" aria-pressed="false" hidden><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12Z"/><circle cx="12" cy="12" r="3"/><path class="eye-slash" d="m3 3 18 18"/></svg><span data-password-label>Show</span></button>
+</div>
+<p class="field-error" id="password-error"></p></div>
+<div class="form-actions"><button type="submit">Login <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12h16m-6-6 6 6-6 6"/></svg></button></div>
+<p id="status" class="status" role="status" aria-live="polite" aria-atomic="true"></p>
+</form><p class="auth-switch">New to the community? <a href="register.html">Create an account</a></p></section>
+</main><footer class="site-footer"><div class="container footer-inner"><p>AlumniConnect <span aria-hidden="true">·</span> A shared campus. A stronger future.</p><div class="footer-links"><a href="index.html#about">About</a><a href="index.html#how-it-works">How it works</a></div></div></footer>
+</body>
+</html>
