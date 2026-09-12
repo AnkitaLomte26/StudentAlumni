@@ -66,6 +66,15 @@ app.add_middleware(
     https_only=settings.SESSION_HTTPS_ONLY,
 )
 
+app.add_middleware(
+    TrustedHostMiddleware,
+    allowed_hosts=[
+        "localhost",
+        "127.0.0.1",
+        "student-alumni-a8da.onrender.com",
+    ],
+)
+
 app.add_middleware(UploadLimitMiddleware)
 app.add_middleware(TrustedHostMiddleware, allowed_hosts=[host.strip() for host in settings.ALLOWED_HOSTS.split(",")])
 app.add_middleware(
