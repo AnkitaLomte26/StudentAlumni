@@ -57,6 +57,7 @@ app = FastAPI(
 )
 
 app.add_middleware(HTTPSecurityMiddleware)
+
 app.add_middleware(
     SessionMiddleware,
     secret_key=settings.SECRET_KEY,
@@ -66,17 +67,16 @@ app.add_middleware(
     https_only=settings.SESSION_HTTPS_ONLY,
 )
 
+app.add_middleware(UploadLimitMiddleware)
+
 app.add_middleware(
     TrustedHostMiddleware,
     allowed_hosts=[
-        "localhost",
-        "127.0.0.1",
-        "student-alumni-a8da.onrender.com",
+        host.strip()
+        for host in settings.ALLOWED_HOSTS.split(",")
     ],
 )
 
-app.add_middleware(UploadLimitMiddleware)
-app.add_middleware(TrustedHostMiddleware, allowed_hosts=[host.strip() for host in settings.ALLOWED_HOSTS.split(",")])
 app.add_middleware(
     CORSMiddleware,
     allow_origins=settings.cors_origins,
@@ -84,7 +84,6 @@ app.add_middleware(
     allow_methods=["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
     allow_headers=["Content-Type", "X-CSRF-Token"],
 )
-
 
 @app.exception_handler(RequestValidationError)
 async def validation_exception_handler(_request: Request, exc: RequestValidationError):
